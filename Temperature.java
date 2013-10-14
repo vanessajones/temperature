@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+
 /** 
  * @author Aditya Mahajan <aditya.mahajan@mcgill.ca>
  * @version 2013.10.06
@@ -65,7 +67,6 @@ public class Temperature {
                            break;
           default:         throw new IllegalArgumentException();
       }
-
       return convertedValue;
   }
 
