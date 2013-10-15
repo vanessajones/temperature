@@ -1,6 +1,6 @@
 import java.math.BigDecimal;
 
-/** 
+/**` 
  * @author Aditya Mahajan <aditya.mahajan@mcgill.ca>
  * @version 2013.10.06
  * Program for ECSE 321, Assignment 2, Fall 2013
@@ -59,12 +59,21 @@ public class Temperature {
       double convertedValue;
 
       switch (units) {
-          case KELVIN:     convertedValue = value;
-                           break;
+          case KELVIN:    convertedValue = value;
+          					if (convertedValue<0){
+          						throw new IllegalArgumentException();
+          					}
+          					break;
           case CELSIUS:    convertedValue = value + 273.15;
+          					if (convertedValue<0){
+          						throw new IllegalArgumentException();
+          					}
                            break;
           case FAHRENHEIT: convertedValue = (value + 459.67) * 5.0/9.0;
-                           break;
+          					if(convertedValue<0){
+          						throw new IllegalArgumentException();
+          					}
+          					break;
           default:         throw new IllegalArgumentException();
       }
       return convertedValue;
@@ -75,13 +84,24 @@ public class Temperature {
    */
   protected double convertFromKelvin(double value) {
       double convertedValue;
-
+ 
+      /* Temperatures cannot go below 0 KELVIN, throw exception if it does */ 
       switch (units) {
-          case KELVIN:     convertedValue = value;
+          case KELVIN:    convertedValue = value; 
+          					if (convertedValue < 0) {	
+          						throw new IllegalArgumentException();
+          					}
                            break;
+                           
           case CELSIUS:    convertedValue = value - 273.15;
+          					if (convertedValue < -273.15) {	
+          						throw new IllegalArgumentException();
+          					}	
                            break;
           case FAHRENHEIT: convertedValue = value * 9.0/5.0 - 459.67;
+          					if (convertedValue < -459.67) {	
+          						throw new IllegalArgumentException();
+          					}
                            break;
           default:         throw new IllegalArgumentException();
       }
